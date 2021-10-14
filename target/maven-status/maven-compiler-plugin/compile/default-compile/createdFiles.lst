@@ -1,0 +1,11 @@
+za\ac\cput\term4\houserentals\dao\RentalsDao.class
+za\ac\cput\term4\houserentals\domain\NewClass.class
+za\ac\cput\term4\houserentals\connection\DbConnection.class
+za\ac\cput\term4\houserentals\dao\EmployersDao.class
+za\ac\cput\term4\houserentals\domain\House.class
+za\ac\cput\term4\houserentals\server\Server.class
+za\ac\cput\term4\houserentals\dao\CustomerDao.class
+za\ac\cput\term4\houserentals\dao\HousesDao.class
+za\ac\cput\term4\houserentals\domain\Customer.class
+za\ac\cput\term4\houserentals\domain\Employers.class
+za\ac\cput\term4\houserentals\domain\Rental.class
