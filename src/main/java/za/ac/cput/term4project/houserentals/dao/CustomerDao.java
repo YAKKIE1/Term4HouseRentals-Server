@@ -72,6 +72,58 @@ public class CustomerDao {
         return customerArray;
     }
     
+    public ArrayList<Customer> getTrueAll(){
+        String getAll_SQL = "SELECT * FROM customer WHERE canrent = true";
+        ArrayList<Customer> customerArray = new ArrayList<>();
+        
+        try{
+            PreparedStatement ps = this.con.prepareStatement(getAll_SQL);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                int customerId = rs.getInt("id");
+                String fName = rs.getString("fname");
+                String lName = rs.getString("lname");
+                String cell = rs.getString("phonenum");
+                boolean canRent = rs.getBoolean("canrent");
+                
+                Customer customer =  new Customer(customerId, fName, lName, cell, canRent);
+                customerArray.add(customer);
+            }
+            rs.close();
+        }
+        catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+        return customerArray;
+    }
+    
+    public ArrayList<Customer> getFalseAll(){
+        String getAll_SQL = "SELECT * FROM customer WHERE canrent = false";
+        ArrayList<Customer> customerArray = new ArrayList<>();
+        
+        try{
+            PreparedStatement ps = this.con.prepareStatement(getAll_SQL);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                int customerId = rs.getInt("id");
+                String fName = rs.getString("fname");
+                String lName = rs.getString("lname");
+                String cell = rs.getString("phonenum");
+                boolean canRent = rs.getBoolean("canrent");
+                
+                Customer customer =  new Customer(customerId, fName, lName, cell, canRent);
+                customerArray.add(customer);
+            }
+            rs.close();
+        }
+        catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+        return customerArray;
+    }
+    
     public Customer update(Customer customer){
         try {
             String updateSQL = "UPDATE customer Set canrent = ? WHERE id = ?";

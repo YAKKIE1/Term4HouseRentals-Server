@@ -72,6 +72,58 @@ public class EmployersDao {
         return employerArray;
     }
     
+    public ArrayList<Employers> getTrueAll(){
+        String getAll_SQL = "SELECT * FROM employers WHERE active = true";
+        ArrayList<Employers> employerArray = new ArrayList<>();
+        
+        try{
+            PreparedStatement ps = this.con.prepareStatement(getAll_SQL);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                int employerId = rs.getInt("id");
+                String fName = rs.getString("fname");
+                String lName = rs.getString("lname");
+                boolean isAdmin = rs.getBoolean("admin");
+                boolean isActive = rs.getBoolean("active");
+                
+                Employers employers =  new Employers(employerId, fName, lName, isActive, isAdmin);
+                employerArray.add(employers);
+            }
+            rs.close();
+        }
+        catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+        return employerArray;
+    }
+    
+    public ArrayList<Employers> getFalseAll(){
+        String getAll_SQL = "SELECT * FROM employers WHERE active = false";
+        ArrayList<Employers> employerArray = new ArrayList<>();
+        
+        try{
+            PreparedStatement ps = this.con.prepareStatement(getAll_SQL);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                int employerId = rs.getInt("id");
+                String fName = rs.getString("fname");
+                String lName = rs.getString("lname");
+                boolean isAdmin = rs.getBoolean("admin");
+                boolean isActive = rs.getBoolean("active");
+                
+                Employers employers =  new Employers(employerId, fName, lName, isActive, isAdmin);
+                employerArray.add(employers);
+            }
+            rs.close();
+        }
+        catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+        return employerArray;
+    }
+    
     public Boolean employeeLogin(Employers employee){
         String login_SQL = "SELECT * FROM employers WHERE id=? AND lname=? AND admin = false";
         
