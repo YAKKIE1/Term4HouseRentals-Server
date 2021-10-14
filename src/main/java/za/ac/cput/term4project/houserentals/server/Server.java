@@ -13,8 +13,6 @@ import java.net.Socket;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import za.ac.cput.term4project.houserentals.dao.CustomerDao;
 import za.ac.cput.term4project.houserentals.dao.EmployersDao;
 import za.ac.cput.term4project.houserentals.dao.HousesDao;
@@ -333,6 +331,36 @@ public class Server {
                     houseList = (ArrayList<House>) houseDao.getTrueAll();
                     
                     out.writeObject(houseList);
+                    out.flush();
+                }
+                if(msg.equals("Cannot Rent")){
+                    ArrayList<Customer> customerList = new ArrayList<>();
+                    customerList = (ArrayList<Customer>) customerDao.getFalseAll();
+                    
+                    out.writeObject(customerList);
+                    out.flush();
+                }
+                
+                if(msg.equals("Can Rent")){
+                    ArrayList<Customer> customerList = new ArrayList<>();
+                    customerList = (ArrayList<Customer>) customerDao.getTrueAll();
+                    
+                    out.writeObject(customerList);
+                    out.flush();
+                }
+                if(msg.equals("Not Active")){
+                    ArrayList<Employers> employeeList = new ArrayList<>();
+                    employeeList = (ArrayList<Employers>) employerDao.getFalseAll();
+                    
+                    out.writeObject(employeeList);
+                    out.flush();
+                }
+                
+                if(msg.equals("Active")){
+                    ArrayList<Employers> employeeList = new ArrayList<>();
+                    employeeList = (ArrayList<Employers>) employerDao.getTrueAll();
+                    
+                    out.writeObject(employeeList);
                     out.flush();
                 }
                 
